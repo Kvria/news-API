@@ -9,3 +9,4 @@ class News:
         self.description = description
         self.content = content
         self.url = url
+

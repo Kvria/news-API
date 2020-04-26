@@ -47,6 +47,5 @@ def process_results(news_list):
         description = news_item.get('description')
         content = news_item.get('content')
         url = news_item.get('url')
-        vote_count = movie_item.get('vote_count')
-
+       
     return news_results
