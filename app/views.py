@@ -13,8 +13,15 @@ def index():
     # Getting breaking news
     general_news = get_news('general')
     sports_news = get_news('sports')
+
     title = 'Home - Welcome to The best News Review Website Online'
-    return render_template('index.html', general = general_news, sports = sports_news )
+
+    search_news = request.args.get('news_query')
+
+    if search_news:
+        return redirect(url_for('search',news_name=search_news))
+    else:
+        return render_template('index.html', general = general_news, sports = sports_news )
 
 
 @app.route('/news/<news_url>')
