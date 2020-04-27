@@ -2,9 +2,9 @@ class Config:
     '''
     General configuration parent class
     '''
-    NEWS_API_BASE_URL ='e1fbdc9c1aa247d29735de670cf1de40'
+    NEWS_API_BASE_URL ='https://newsapi.org/v2/top-headlines?country={}&apiKey={}'
 
-    class ProdConfig(Config):
+class ProdConfig(Config):
     '''
     Production  configuration child class
 

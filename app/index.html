@@ -1,10 +1,16 @@
-...
+{% import 'macros.html' as macro%}
 <body>
-        <!-- Breaking news section  -->
+        <!-- General news section  -->
         <h3> Breaking news</h3>
          <ul>
-            {% for Breaking news in general %}
-                <li>{{ breaking_news.title}}</li>
+            {% for general_news in general %}
+                <li>{{ general_news.title}}</li>
+            {% endfor %}
+        </ul>
+        <h3> Sports Movies </h3>
+         <ul>
+            {% for sports_news in sports %}
+                <li>{{ sports_news.title}}</li>
             {% endfor %}
         </ul>
  </body>
