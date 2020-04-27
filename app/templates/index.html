@@ -1,0 +1,13 @@
+{% import 'macros.html' as macro%}
+<body>
+        <!-- General news section  -->
+        <h3> Breaking news</h3>
+         <ul>
+            {{ macro.displayNewsList(general)}}
+        </ul>
+        <h3> Sports Movies </h3>
+         <ul>
+            {{ macro.displayNewsList(sports)}}
+        </ul>
+ </body>
+ ....
