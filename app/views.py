@@ -28,3 +28,14 @@ def news(news_url):
     title = f'{news.title}'
 
     return render_template('news.html',title = title)
+
+@app.route('/search/<news_name>')
+def search(news_name):
+    '''
+    View function to display the search results
+    '''
+    news_name_list = news_name.split(" ")
+    news_name_format = "+".join(news_name_list)
+    searched_news = search_news(news_name_format)
+    title = f'search results for {news_name}'
+    return render_template('search.html',news = searched_news)
