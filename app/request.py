@@ -48,5 +48,8 @@ def process_results(news_list):
         description = news_item.get('description')
         content = news_item.get('content')
         url = news_item.get('url')
+
+        news_object = News(source,title,description,content,url)
+        news_results.append(news_object)
        
     return news_results
