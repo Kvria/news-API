@@ -1,14 +1,20 @@
 {% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 <body>
+    <!-- Content block -->
+    {% block content %}
+
         <!-- General news section  -->
         <h3> Breaking news</h3>
          <ul>
             {{ macro.displayNewsList(general)}}
         </ul>
+        
         <h3> Sports news </h3>
          <ul>
             {{ macro.displayNewsList(sports)}}
         </ul>
+
+    {% endblock%}
  </body>
  ....
