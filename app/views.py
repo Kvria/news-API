@@ -18,10 +18,13 @@ def index():
 
 
 @app.route('/news/<news_url>')
-def movie(news_url):
+def news(news_url):
 
     '''
-    View movie page function that returns the news details page and its data
+    View news page function that returns the news details page and its data
     '''
-    title = f'You are viewing {news_url}'
+    
+    movie = get_news(url)
+    title = f'{news.title}'
+
     return render_template('news.html',title = title)
