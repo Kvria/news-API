@@ -3,7 +3,7 @@ This is a web app containing a news API where by one can view various news sourc
 ## AUTHOR: Patricia Kuria
 ### Language python
 ## SET UP INSTRUCTIONS
-Create folders with files
-Test code using test files
-Add styling using bootsrap
-Deploying app to Heroku
+1.Create folders with files
+2.Test code using test files
+3.Add styling using bootsrap
+4.Deploying app to Heroku
