@@ -1,16 +1,17 @@
-from app import app
 import urllib.request,json
-from .models import news
+from .model import News
 
-News = news.News
 
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
+api_key = None
 
 # Getting the movie base url
-base_url = app.config['NEWS_API_BASE_URL']
+base_url = None
 
-...
+def configure_request(app):
+    global api_key,base_url
+    api_key = app.config['NEWS_API_KEY']
+    base_url = app.config['NEWS_API_BASE_URL']
 
 def get_allnews(category):
     '''
@@ -21,11 +22,12 @@ def get_allnews(category):
     with urllib.request.urlopen(get_allnews_url) as url:
         get_allnews_data = url.read()
         get_allnews_response = json.loads(get_allnews_data)
+        print(get_allnews_response)
 
         allnews_results = None
 
-        if get_allnews_response['results']:
-            allnews_results_list = get_allnews_response['results']
+        if get_allnews_response['sources']:
+            allnews_results_list = get_allnews_response['sources']
             allnews_results = process_results(allnews_results_list)
 
 
@@ -43,19 +45,18 @@ def process_results(news_list):
     '''
     news_results = []
     for news_item in news_list:
-        source = news_item.get('source')
-        title = news_item.get('title')
+        id = news_item.get('id')
+        name = news_item.get('name')
         description = news_item.get('description')
-        content = news_item.get('content')
         url = news_item.get('url')
 
-        news_object = News(source,title,description,content,url)
+        news_object = News(id,name,description,url)
         news_results.append(news_object)
        
     return news_results
 
-def get_news(url):
-    get_news_details_url = base_url.format(url,api_key)
+def get_news(id):
+    get_news_details_url = base_url.format(id,api_key)
 
     with urllib.request.urlopen(get_news_details_url) as url:
         news_details_data = url.read()

@@ -1,9 +1,9 @@
 from flask import render_template
-from app import app
-from .request import get_allnews,get_news,search_news
+from . import main
+from ..request import get_allnews,get_news,search_news
 
 
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -11,32 +11,27 @@ def index():
     '''
 
     # Getting breaking news
-    general_news = get_news('general')
-    sports_news = get_news('sports')
+    general_news = get_allnews('general')
+    sports_news = get_allnews('sports')
 
     title = 'Home - Welcome to The best News Review Website Online'
 
-    search_news = request.args.get('news_query')
-
-    if search_news:
-        return redirect(url_for('search',news_name=search_news))
-    else:
-        return render_template('index.html', general = general_news, sports = sports_news )
+    return render_template('index.html', general = general_news, sports = sports_news )
 
 
-@app.route('/news/<news_url>')
+@main.route('/news/<news_url>')
 def news(news_url):
 
     '''
     View news page function that returns the news details page and its data
     '''
     
-    movie = get_news(url)
+    news = get_news(url)
     title = f'{news.title}'
 
     return render_template('news.html',title = title)
 
-@app.route('/search/<news_name>')
+@main.route('/search/<news_name>')
 def search(news_name):
     '''
     View function to display the search results

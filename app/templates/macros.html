@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% macro display_sources(sources) %}
+<div class="container">
+    <div class="row">
+        {% for source in sources %}
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header"><h4><b>{{source.name}}</b></h4></div>
+                <div class="card-body">
+                    <p class="card-text">{{source.description}}</p>
+                    <a href="news/{{source.id}}" class="btn btn-info">articles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+</div>
+{% endmacro %}
