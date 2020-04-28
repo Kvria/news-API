@@ -1,5 +1,5 @@
 import urllib.request,json
-from .model import News
+from .model import News,Article
 
 
 # Getting api key
@@ -22,7 +22,7 @@ def get_allnews(category):
     with urllib.request.urlopen(get_allnews_url) as url:
         get_allnews_data = url.read()
         get_allnews_response = json.loads(get_allnews_data)
-        print(get_allnews_response)
+        print(get_all news)
 
         allnews_results = None
 
@@ -74,17 +74,26 @@ def get_news(id):
 
     return news_object
 
-def search_news(news_name):
-    search_news_url = 'https://newsapi.org/v2/top-headlines?country={}&apiKey={}'.format(api_key,news_name)
-    with urllib.request.urlopen(search_news_url) as url:
-        search_news_data = url.read()
-        search_news_response = json.loads(search_news_data)
+def get_article(id):
+    new_url = 'http://newsapi.org/v2/everything?sources={}&apiKey={}'
+    get_article_details_url = base_url.format(id,api_key)
 
-        search_news_results = None
+    with urllib.request.urlopen(get_article_details_url) as url:
+        article_details_data = url.read()
+        article_details_response = json.loads(article_details_data)
 
-        if search_news_response['results']:
-            search_news_list = search_news_response['results']
-            search_news_results = process_results(search_news_list)
+        article_results = []
+        
+        if article_details_response['articles']:
+            article_list = article_details_response['article']
+            for article in article_list:
+                author = article.get('source')
+                title = article.get('title')
+                content = article.get('content')
+                urlToImage= article.get('urlToImage')
+                publishedAt = article.get('publishedAt')
 
+                article_object = Article(author,title,content,urlToImage,publishedAt)
+                article_results.append(article_object) 
 
-    return search_news_results
+    return article_results
