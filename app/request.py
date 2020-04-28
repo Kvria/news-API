@@ -22,7 +22,6 @@ def get_allnews(category):
     with urllib.request.urlopen(get_allnews_url) as url:
         get_allnews_data = url.read()
         get_allnews_response = json.loads(get_allnews_data)
-        print(get_all news)
 
         allnews_results = None
 
@@ -55,28 +54,11 @@ def process_results(news_list):
        
     return news_results
 
-def get_news(id):
-    get_news_details_url = base_url.format(id,api_key)
 
-    with urllib.request.urlopen(get_news_details_url) as url:
-        news_details_data = url.read()
-        news_details_response = json.loads(news_details_data)
-
-        news_object = None
-        if news_details_response:
-            source = news_details_response.get('source')
-            title = news_details_response.get('title')
-            description = news_details_response.get('description')
-            content = news_details_response.get('content')
-            url = news_details_response.get('url')
-            
-            news_object = News(source,title,description,content,url)
-
-    return news_object
 
 def get_article(id):
-    new_url = 'http://newsapi.org/v2/everything?sources={}&apiKey={}'
-    get_article_details_url = base_url.format(id,api_key)
+    news_url = 'http://newsapi.org/v2/everything?sources={}&apiKey={}'
+    get_article_details_url = news_url.format(id,api_key)
 
     with urllib.request.urlopen(get_article_details_url) as url:
         article_details_data = url.read()
@@ -85,9 +67,9 @@ def get_article(id):
         article_results = []
         
         if article_details_response['articles']:
-            article_list = article_details_response['article']
+            article_list = article_details_response['articles']
             for article in article_list:
-                author = article.get('source')
+                author = article.get('author')
                 title = article.get('title')
                 content = article.get('content')
                 urlToImage= article.get('urlToImage')

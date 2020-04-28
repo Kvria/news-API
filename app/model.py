@@ -10,7 +10,7 @@ class News:
         self.url = url
 
 class Article :
-    def __init__(self,author,title,content,urlToImage,publishedAt)
+    def __init__(self,author,title,content,urlToImage,publishedAt):
         self.author = author
         self.title = title
         self.content = content

@@ -4,19 +4,17 @@
 <div class="container">
 
     <!-- Poster background -->
-    <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 posterPath" style="background: url({{movie.poster}}) no-repeat center center">
-        </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
-            <h3>{{news.title }}</h3>
-
-            <p class="content"> {{news.content }}</p>
-            <p class="url"> <b> {{ news.url }}</b> </p>
-
-
+    {%for article in articles%}
+    <div class="card" style="width: 18rem;" >
+        <img class="card-img-top" src ="{{article.urlToImage}}"alt="Card image cap">
+        <div class="card-header"><h4><b>{{article.title}}</b></h4></div>
+        <div class="card-body font-weight-bold">
+            <p class="card-text">{{article.content|truncate(100)}}</p>
+            <p class="card-text">{{article.author}}</p>
+            </button>
         </div>
     </div>
-
+    {%endfor%}
 </div>
 {% endblock %}
